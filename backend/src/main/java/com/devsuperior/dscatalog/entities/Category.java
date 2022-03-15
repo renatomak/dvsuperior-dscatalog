@@ -1,4 +1,4 @@
-package com.devsuperior.dscatalog.model;
+package com.devsuperior.dscatalog.entities;
 
 import lombok.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "tb_category")
 @Getter
 @Setter
 @AllArgsConstructor
