@@ -1,5 +1,6 @@
 package com.devsuperior.dscatalog.entities;
 
+import com.devsuperior.dscatalog.dto.CategoryDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,5 +23,10 @@ public class Category implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String name;
+
+    public Category(CategoryDto dto) {
+        this.id = dto.getId();
+        this.name = dto.getName();
+    }
 
 }
