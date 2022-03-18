@@ -26,14 +26,14 @@ public class Category implements Serializable {
     private String name;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant createAt;
+    private Instant createdAt;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updateAt;
 
     @PrePersist
     public void prePersist() {
-        createAt = Instant.now();
+        createdAt = Instant.now();
     }
 
     @PreUpdate
