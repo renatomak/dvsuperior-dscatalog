@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
@@ -23,6 +24,22 @@ public class Category implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String name;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant createAt;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant updateAt;
+
+    @PrePersist
+    public void prePersist() {
+        createAt = Instant.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updateAt = Instant.now();
+    }
 
     public Category(CategoryDto dto) {
         this.id = dto.getId();
