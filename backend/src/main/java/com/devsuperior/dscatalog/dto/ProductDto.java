@@ -26,7 +26,7 @@ public class ProductDto implements Serializable {
     
     private List<CategoryDto> categoryDtos = new ArrayList<>();
 
-    private ProductDto(Product entity) {
+    public ProductDto(Product entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
@@ -34,7 +34,7 @@ public class ProductDto implements Serializable {
         this.imgUrl = entity.getImgUrl();
     }
 
-    private ProductDto(Product entity, Set<Category> categories) {
+    public ProductDto(Product entity, Set<Category> categories) {
         this(entity);
         categories.forEach(cat -> this.categoryDtos.add(new CategoryDto(cat)));
     }
