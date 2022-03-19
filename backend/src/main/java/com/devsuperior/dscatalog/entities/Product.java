@@ -1,5 +1,7 @@
 package com.devsuperior.dscatalog.entities;
 
+import com.devsuperior.dscatalog.dto.CategoryDto;
+import com.devsuperior.dscatalog.dto.ProductDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,4 +40,18 @@ public class Product implements Serializable {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     Set<Category> categories = new HashSet<>();
+
+    public Product(ProductDto dto) {
+        this.id = dto.getId();
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+        this.price = dto.getPrice();
+        this.imgUrl = dto.getImgUrl();
+    }
+
+    public Product(ProductDto dto, Set<CategoryDto> categoriesDto) {
+        this(dto);
+        categoriesDto.forEach(cat -> this.categories.add(new Category(cat)));
+    }
+
 }

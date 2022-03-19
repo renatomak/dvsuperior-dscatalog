@@ -5,7 +5,9 @@ import com.devsuperior.dscatalog.entities.Product;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,8 +25,9 @@ public class ProductDto implements Serializable {
     private String description;
     private Double price;
     private String imgUrl;
+    private Instant date;
     
-    private List<CategoryDto> categoryDtos = new ArrayList<>();
+    private Set<CategoryDto> categories = new HashSet<>();
 
     public ProductDto(Product entity) {
         this.id = entity.getId();
@@ -32,10 +35,11 @@ public class ProductDto implements Serializable {
         this.description = entity.getDescription();
         this.price = entity.getPrice();
         this.imgUrl = entity.getImgUrl();
+        this.date = entity.getDate();
     }
 
     public ProductDto(Product entity, Set<Category> categories) {
         this(entity);
-        categories.forEach(cat -> this.categoryDtos.add(new CategoryDto(cat)));
+        categories.forEach(cat -> this.categories.add(new CategoryDto(cat)));
     }
 }
